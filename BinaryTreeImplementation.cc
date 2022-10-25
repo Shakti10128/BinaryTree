@@ -19,7 +19,7 @@ BinaryTreeNode<int> * takeInput(){
     return root;
 }
 
-// taking input of binaryTree by levelwise using queue
+// taking input of binaryTree levelwise using queue
 BinaryTreeNode<int> * takeInputLevelWise(){
     int data;
     cout<<"Enter the root data"<<endl;

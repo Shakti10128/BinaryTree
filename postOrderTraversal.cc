@@ -2,7 +2,7 @@
 #include"BinaryTreeClass.cc"
 using namespace std;
 
-// taking input of binaryTree by levelwise using queue
+// taking input of binaryTree  levelwise using queue
 BinaryTreeNode<int> * takeInputLevelWise(){
     int data;
     cout<<"Enter the root data"<<endl;
