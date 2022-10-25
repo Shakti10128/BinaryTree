@@ -3,7 +3,11 @@
 using namespace std;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // taking input of binaryTree  levelwise using queue
+=======
+// taking input of binaryTree levelwise using queue
+>>>>>>> 257908d95bdd82747b1e8795899d5ebe1579db1e
 =======
 // taking input of binaryTree levelwise using queue
 >>>>>>> 257908d95bdd82747b1e8795899d5ebe1579db1e
