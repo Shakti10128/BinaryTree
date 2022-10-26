@@ -34,6 +34,40 @@ BinaryTreeNode<int> * takeInputLevelWise(){
 
 }
 
+// in this approach we will solve this question without using any extra space
+BinaryTreeNode<int> * solve1(BinaryTreeNode<int> *root,int &k,int node){
+    if(root == NULL){
+        return 0;
+    }
+    if(root->data == node){
+        return root;
+    }
+
+    BinaryTreeNode<int> * left = solve1(root->left,k,node);
+    BinaryTreeNode<int> * right = solve1(root->right,k,node);
+
+    if(left!=NULL && right == NULL){
+        k--;
+        if(k<=0){
+            // lock this node as final answer
+            k = INT_MAX;
+            return root;
+        }
+        return left;
+    }
+    if(left==NULL && right != NULL){
+        k--;
+        if(k<=0){
+            // lock this node as final answer
+            k = INT_MAX;
+            return root;
+        }
+        return right;
+    }
+    return NULL;
+}
+
+// in this approach we are using an extra space by vector<int>
 void solve(BinaryTreeNode<int> * root, int k,int node,vector<int> ans,int &res){
     if(root == NULL){
         return;
@@ -55,10 +89,14 @@ void solve(BinaryTreeNode<int> * root, int k,int node,vector<int> ans,int &res){
 
 int kthAncestor(BinaryTreeNode<int> * root, int k, int node)
 {
-    vector<int> ans;
-    int res = -1;
-    solve(root,k,node,ans,res);
-    return res;
+    // vector<int> ans;
+    // int res = -1;
+    // solve(root,k,node,ans,res);
+    BinaryTreeNode<int> * ans = solve1(root,k,node);
+    if(ans == NULL)
+        return -1;
+    else
+        return ans->data;
 }
 
 
