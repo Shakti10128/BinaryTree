@@ -89,9 +89,13 @@ void solve(BinaryTreeNode<int> * root, int k,int node,vector<int> ans,int &res){
 
 int kthAncestor(BinaryTreeNode<int> * root, int k, int node)
 {
+    // for solve funtion 
     // vector<int> ans;
     // int res = -1;
     // solve(root,k,node,ans,res);
+    // return res;
+
+    // for solve1 function 
     BinaryTreeNode<int> * ans = solve1(root,k,node);
     if(ans == NULL)
         return -1;
