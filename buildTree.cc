@@ -55,31 +55,32 @@ void printLevelWise(BinaryTreeNode<int> * root){
 
 /*------------------------------buildTree---------------------------------*/
 
-int findPos(int *in,int element,int n){
+void mapping(map<int,int> &nodeToIndex,int *in,int n){
     for(int i = 0; i<n; i++){
-        if(in[i]== element){
-            return i;
-        }
+        nodeToIndex[in[i]] = i;
     }
-    return -1;
 }
-
-BinaryTreeNode<int> * solve(int *in,int * pre,int &index,int inStart,int inEnd,int n){
+    
+BinaryTreeNode<int>* solve(int *in,int * pre,int &index,int inStart,int inEnd,int n,map<int,int> &nodeToIndex){
     if(index >=n || inStart>inEnd){
         return NULL;
     }
     int element = pre[index++];
-    BinaryTreeNode<int> * root = new BinaryTreeNode<int>(element);
-    int indexPosition = findPos(in,element,n);
+    BinaryTreeNode<int>* root = new BinaryTreeNode<int>(element);
+    int indexPosition = nodeToIndex[element];
     
-    root->left = solve(in,pre,index,inStart,indexPosition-1,n);
-    root->right = solve(in,pre,index,indexPosition+1,inEnd,n);
+    root->left = solve(in,pre,index,inStart,indexPosition-1,n,nodeToIndex);
+    root->right = solve(in,pre,index,indexPosition+1,inEnd,n,nodeToIndex);
     return root;
 }
 
-BinaryTreeNode<int> * buildTree(int in[],int pre[], int n){
+BinaryTreeNode<int>* buildTree(int in[],int pre[], int n)
+{
+    // Code here
     int index = 0;
-    BinaryTreeNode<int> * ans = solve(in,pre,index,0,n-1,n);
+    map<int,int> nodeToIndex;
+    mapping(nodeToIndex,in,n);
+    BinaryTreeNode<int>* ans = solve(in,pre,index,0,n-1,n,nodeToIndex);
     return ans;
 }
 
